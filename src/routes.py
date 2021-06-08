@@ -7,6 +7,11 @@ from models import *
 usuario_schema= UsuariosSchema()
 usuarios_schema= UsuariosSchema(many=True)
     
+@app.route('/usuarios/ver', methods=['GET'])
+def ver_usuario():
+    usuarios = Usuarios.query.all()
+    result = usuarios_schema.dump(usuarioscls)
+    return jsonify(result)
 # ----------------------------------------------------------------------------------
 
 #FAMILIAS
