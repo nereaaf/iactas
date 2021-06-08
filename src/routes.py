@@ -60,6 +60,18 @@ def actualizar_usuario(id):
 
 # ----------------------------------------------------------------------------------
 
+#ADMINISTRADORES
+administrador_schema= AdministradoresSchema()
+administradores_schema= AdministradoresSchema(many=True)
+    
+@app.route('/administradores/ver', methods=['GET'])
+def ver_administrador():
+    administradores = Administradores.query.all()
+    result = administradores_schema.dump(administradores)
+    return jsonify(result)
+
+# ----------------------------------------------------------------------------------
+
 #FAMILIAS
 familia_schema = FamiliasSchema()
 familias_schema = FamiliasSchema(many=True)
