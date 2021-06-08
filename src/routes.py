@@ -12,6 +12,52 @@ def ver_usuario():
     usuarios = Usuarios.query.all()
     result = usuarios_schema.dump(usuarios)
     return jsonify(result)
+
+@app.route('/usuarios/insertar', methods=['POST'])
+def insertar_usuario():
+    dni = request.json['dni']
+    nombre = request.json['nombre']
+    apellido1 = request.json['apellido1']
+    apellido2 = request.json['apellido2']
+    email = request.json['email']
+    password = request.json['password']
+
+    nuevo_usuario = Usuarios(dni, nombre, apellido1, apellido2,
+    email, password)
+
+    bd.session.add(nuevo_usuario)
+    bd.session.commit()
+
+    return usuario_schema.jsonify(nuevo_usuario)
+
+@app.route('/usuarios/borrar/<id>', methods=['DELETE'])
+def borrar_usuario(id):
+    usuario = Usuarios.query.get(id)
+    bd.session.delete(usuario)
+    bd.session.commit()
+
+    return usuario_schema.jsonify(usuario)
+
+@app.route('/usuarios/actualizar/<id>', methods=['PUT'])
+def actualizar_usuario(id):
+    
+    usuario = Usuarios.query.get(id)
+    dni = request.json['dni']
+    usuario.dni = dni
+    nombre = request.json['nombre']
+    usuario.nombre = nombre
+    apellido1 = request.json['apellido1']
+    usuario.apellido1 = apellido1
+    apellido2 = request.json['apellido2']
+    usuario.apellido2 = apellido2
+    email = request.json['email']
+    usuario.email = email
+    password = request.json['password']
+    usuario.password = password
+    bd.session.commit()
+
+    return usuario_schema.jsonify(usuario)
+
 # ----------------------------------------------------------------------------------
 
 #FAMILIAS
