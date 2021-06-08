@@ -10,7 +10,7 @@ usuarios_schema= UsuariosSchema(many=True)
 @app.route('/usuarios/ver', methods=['GET'])
 def ver_usuario():
     usuarios = Usuarios.query.all()
-    result = usuarios_schema.dump(usuarioscls)
+    result = usuarios_schema.dump(usuarios)
     return jsonify(result)
 # ----------------------------------------------------------------------------------
 
