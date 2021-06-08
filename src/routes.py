@@ -70,6 +70,68 @@ def ver_administrador():
     result = administradores_schema.dump(administradores)
     return jsonify(result)
 
+@app.route('/administradores/insertar', methods=['POST'])
+def insertar_administrador():
+    dni = request.json['dni']
+
+    nuevo_admin = Administradores(dni)
+
+    bd.session.add(nuevo_admin)
+    bd.session.commit()
+
+    return administrador_schema.jsonify(nuevo_admin)
+
+@app.route('/administradores/borrar/<id>', methods=['DELETE'])
+def borrar_administrador(id):
+    administrador = Administradores.query.get(id)
+    bd.session.delete(administrador)
+    bd.session.commit()
+
+    return administrador_schema.jsonify(administrador)
+
+# ----------------------------------------------------------------------------------
+
+#PROFESORES
+profesor_schema= ProfesoresSchema()
+profesores_schema= ProfesoresSchema(many=True)
+    
+@app.route('/profesores/ver', methods=['GET'])
+def ver_profesor():
+    profesores = Profesores.query.all()
+    result = profesores_schema.dump(profesores)
+    return jsonify(result)
+
+@app.route('/profesores/insertar', methods=['POST'])
+def insertar_profesor():
+    dni_profesor = request.json['dni_profesor']
+
+    nuevo_profesor = Profesores(dni_profesor)
+
+    bd.session.add(nuevo_profesor)
+    bd.session.commit()
+
+    return profesor_schema.jsonify(nuevo_profesor)
+
+@app.route('/profesores/borrar/<id>', methods=['DELETE'])
+def borrar_profesor(id):
+    profesor = Profesores.query.get(id)
+    bd.session.delete(profesor)
+    bd.session.commit()
+
+    return profesor_schema.jsonify(profesor)
+
+# ----------------------------------------------------------------------------------
+
+#ALUMNOS
+alumno_schema= AlumnosSchema()
+alumnos_schema= AlumnosSchema(many=True)
+    
+#@app.route('/alumnos/ver', methods=['GET'])
+#def ver_alumnos():
+    #alumnos = Alumnos.query.all()
+    #result = alumnos_schema.dump(alumnos)
+    #return jsonify(result)
+
 # ----------------------------------------------------------------------------------
 
 #FAMILIAS

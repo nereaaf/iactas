@@ -34,7 +34,7 @@ class Administradores(bd.Model):
 
 class AdministradoresSchema(ma.Schema):
     class Meta:
-        field=('dni_admin')
+        fields=['dni_admin']
 
 # ----------------------------------------------------------------------------------
 
@@ -48,7 +48,7 @@ class Profesores(bd.Model):
 
 class ProfesoresSchema(ma.Schema):
     class Meta:
-        field=('dni_profesor')
+        fields=['dni_profesor']
 
 # ----------------------------------------------------------------------------------
 
