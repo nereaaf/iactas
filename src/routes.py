@@ -1,4 +1,3 @@
-import re
 from models import Familias, FamiliasSchema, UsuariosSchema,Ciclos, CiclosSchema, Regimen, RegimenSchema
 from __init__ import app, bd
 from flask import request, jsonify
