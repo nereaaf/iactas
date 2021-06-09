@@ -126,11 +126,11 @@ def borrar_profesor(id):
 alumno_schema= AlumnosSchema()
 alumnos_schema= AlumnosSchema(many=True)
     
-#@app.route('/alumnos/ver', methods=['GET'])
-#def ver_alumnos():
-    #alumnos = Alumnos.query.all()
-    #result = alumnos_schema.dump(alumnos)
-    #return jsonify(result)
+@app.route('/alumnos/ver', methods=['GET'])
+def ver_alumnos():
+    alumnos = Alumnos.query.all()
+    result = alumnos_schema.dump(alumnos)
+    return jsonify(result)
 
 # ----------------------------------------------------------------------------------
 
@@ -472,11 +472,11 @@ def ver_via_acceso():
 sesion_schema = SesionesSchema()
 sesiones_schema = SesionesSchema(many=True)
 
-#@app.route('/sesiones/ver', methods=['GET'])
-#def ver_sesiones():
-    #sesiones = Sesiones.query.all()
-    #result = sesiones_schema.dump(sesiones)
-    #return jsonify(result)
+@app.route('/sesiones/ver', methods=['GET'])
+def ver_sesiones():
+    sesiones = Sesiones.query.all()
+    result = sesiones_schema.dump(sesiones)
+    return jsonify(result)
 
 # ----------------------------------------------------------------------------------
 
@@ -535,11 +535,11 @@ def actualizar_fecha_evaluacion(id):
 matricula_schema = MatriculacionesSchema()
 matriculaciones_schema = MatriculacionesSchema(many=True)
 
-#@app.route('/matriculaciones/ver', methods=['GET'])
-#def ver_matriculaciones():
-    #matriculaciones = Matriculaciones.query.all()
-    #result = matriculaciones_schema.dump(matriculaciones)
-    #return jsonify(result)
+@app.route('/matriculaciones/ver', methods=['GET'])
+def ver_matriculaciones():
+    matriculaciones = Matriculaciones.query.all()
+    result = matriculaciones_schema.dump(matriculaciones)
+    return jsonify(result)
 
 
 

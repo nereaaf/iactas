@@ -57,8 +57,8 @@ class Alumnos(bd.Model):
     # foreign key Usuarios --> dni
     dni_alumno = bd.Column(bd.String(9), bd.ForeignKey('usuarios.dni'), primary_key=True, nullable=False)
     tlfno = bd.Column(bd.String(9), nullable=False)
-    fechaNac = bd.Column(bd.String(10), nullable=False)
-    lugarNac = bd.Column(bd.String(30), nullable=False)
+    fechanac = bd.Column(bd.String(10), nullable=False)
+    lugarnac = bd.Column(bd.String(30), nullable=False)
     nacionalidad = bd.Column(bd.String(30), nullable=False)
     domicilio = bd.Column(bd.String(100), nullable=False)
     localidad = bd.Column(bd.String(30), nullable=False)
@@ -67,11 +67,11 @@ class Alumnos(bd.Model):
     provincia = bd.Column(bd.String(45), nullable=False)
     pais = bd.Column(bd.String(45), nullable=False)
 
-    def __init__(self, dni_alumno, tlfno, fechaNac, lugarNac, nacionalidad, domicilio, localidad, cp, municipio, provincia, pais):
+    def __init__(self, dni_alumno, tlfno, fechanac, lugarnac, nacionalidad, domicilio, localidad, cp, municipio, provincia, pais):
         self.dni_alumno = dni_alumno
         self.tlfno = tlfno
-        self.fechaNac = fechaNac
-        self.lugarNac = lugarNac
+        self.fechanac = fechanac
+        self.lugarnac = lugarnac
         self.nacionalidad = nacionalidad
         self.domicilio = domicilio
         self.localidad = localidad
@@ -82,7 +82,7 @@ class Alumnos(bd.Model):
 
 class AlumnosSchema(ma.Schema):
     class Meta:
-        fields=('dni_alumno', 'tlfno', 'fechaNac', 'lugarNac', 'nacionalidad', 'domicilio', 'localidad', 'cp', 'municipio', 'provincia', 'pais')
+        fields=('dni_alumno', 'tlfno', 'fechanac', 'lugarnac', 'nacionalidad', 'domicilio', 'localidad', 'cp', 'municipio', 'provincia', 'pais')
 
 # ----------------------------------------------------------------------------------
 
@@ -280,35 +280,35 @@ class Matriculaciones(bd.Model):
     __tablename__ = 'matriculaciones'
     n_expediente = bd.Column(bd.String(12), primary_key=True, nullable=False)
     alumno_dni = bd.Column(bd.String(9), bd.ForeignKey('alumnos.dni_alumno'), nullable=False)
-    año_academico = bd.Column(bd.String(9), nullable=False)
+    anio_academico = bd.Column(bd.String(9), nullable=False)
     via_acceso = bd.Column(bd.Integer, bd.ForeignKey('vias_acceso.id_via'), nullable=False)
-    regimen_mat = bd.Column(bd.Integer, bd.ForeignKey('regimen.id_regimen'), nullable=False)
+    regimen = bd.Column(bd.Integer, bd.ForeignKey('regimen.id_regimen'), nullable=False)
     cod_mod = bd.Column(bd.String(5), bd.ForeignKey('modulos.cod_mod'), nullable=False)
     nota = bd.Column(bd.Integer, nullable=True)
     n_convocatoria = bd.Column(bd.Integer, nullable=True)
     cod_sesion = bd.Column(bd.String(30), bd.ForeignKey('fechas_evaluacion.cod_sesion'), nullable=True)
     cv_o_aa = bd.Column(bd.String(2), nullable=True)
-    apto_noApto = bd.Column(bd.String(10), nullable=True)
+    apto_noapto = bd.Column(bd.String(10), nullable=True)
     superada = bd.Column(bd.Boolean,default=False) #¿? TINYINT(1)
     
 
-    def __init__(self, n_expediente, alumno_dni, año_academico, via_acceso, regimen_mat, cod_mod, nota, n_convocatoria, cod_sesion, cv_o_aa, apto_noApto, superada):
+    def __init__(self, n_expediente, alumno_dni, anio_academico, via_acceso, regimen, cod_mod, nota, n_convocatoria, cod_sesion, cv_o_aa, apto_noapto, superada):
         self.n_expediente = n_expediente
         self.alumno_dni = alumno_dni
-        self.año_academico = año_academico
+        self.anio_academico = anio_academico
         self.via_acceso = via_acceso
-        self.regimen_mat = regimen_mat
+        self.regimen = regimen
         self.cod_mod = cod_mod
         self.nota = nota
         self.n_convocatoria = n_convocatoria
         self.cod_sesion = cod_sesion
         self.cv_o_aa = cv_o_aa
-        self.apto_noApto = apto_noApto
+        self.apto_noapto = apto_noapto
         self.superada = superada
 
 class MatriculacionesSchema(ma.Schema):
     class Meta:
-        fields=('n_expediente', 'alumno_dni', 'año_academico', 'via_acceso', 'regimen', 'cod_mod', 'nota', 'n_convocatoria', 'cod_sesion', 'cv_o_aa', 'apto_noApto', 'superada')
+        fields=('n_expediente', 'alumno_dni', 'anio_academico', 'via_acceso', 'regimen', 'cod_mod', 'nota', 'n_convocatoria', 'cod_sesion', 'cv_o_aa', 'apto_noapto', 'superada')
 
 
 
